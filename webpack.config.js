@@ -1,7 +1,7 @@
 const path = require('path') // node核心模塊
 
 module.exports = {
-  mode: 'production', // 默認是生產環境, else 的development
+  mode: 'development', // 默認是生產環境production, else 的development
   entry: './src/index.js', // 打包的是那支文件velopment
   module: { // 模塊
     rules: [{ // 校驗規則

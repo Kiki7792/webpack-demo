@@ -1,8 +1,7 @@
-import Header from './Header'
-import Content from './Content'
-import Sidebar from './Sidebar'
 import avatar from './saffron7.jpg'
 
-new Header()
-new Content()
-new Sidebar()
+let img = new Image()
+img.src = avatar
+
+let root = document.getElementById('root')
+root.append(img)
