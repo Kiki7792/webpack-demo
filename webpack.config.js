@@ -5,9 +5,15 @@ module.exports = {
   entry: './src/index.js', // 打包的是那支文件velopment
   module: { // 模塊
     rules: [{ // 校驗規則
-      test: /\.jpg$/,
+      test: /\.(jpg|png|gif)$/,
       use: {
-        loader: 'file-loader' // 需要安裝 打包圖片/txt/等
+        loader: 'file-loader', // 需要安裝 打包圖片/txt/等
+        options: {
+          // placeholder 佔位符
+          name: '[name].[ext]', // 與打包前的名字和後綴名一樣
+          // name: '[name]_[hash].[ext]', // 與打包前的名字和後綴名一樣, 名字後面加上hash
+          outputPath: 'images/' // 將圖片打包到dist文件夾下的images文件夾裏
+        }
       }
     }]
   },

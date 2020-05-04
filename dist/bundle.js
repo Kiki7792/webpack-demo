@@ -106,7 +106,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _saf
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"9d2ee6d7450d612ea27e8b802c39d651.jpg\");\n\n//# sourceURL=webpack:///./src/saffron7.jpg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"images/saffron7.jpg\");\n\n//# sourceURL=webpack:///./src/saffron7.jpg?");
 
 /***/ })
 
