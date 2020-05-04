@@ -4,7 +4,7 @@ module.exports = {
   mode: 'development', // 默認是生產環境production, else 的development
   entry: './src/index.js', // 打包的是那支文件velopment
   module: { // 模塊
-    rules: [{ // 校驗規則
+    rules: [{ // img 校驗規則
       test: /\.(jpg|png|gif)$/,
       use: {
         loader: 'url-loader', // 需要安裝 打包圖片/txt/等
@@ -16,6 +16,9 @@ module.exports = {
           limit: 2048 // 小於2Kb 打包在bundle.js中以base64展示, 大於2kb就打包在dist/images文件夾下
         }
       }
+    },{ // 校驗css規則
+      test: /\.(css)$/,
+      use:  ['style-loader','css-loader'] // 需要安裝 打包圖片/txt/等
     }]
   },
   output: { // 打包輸出的路徑
