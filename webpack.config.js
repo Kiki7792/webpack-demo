@@ -17,8 +17,19 @@ module.exports = {
         }
       }
     },{ // 校驗css規則
-      test: /\.(css)$/,
-      use:  ['style-loader','css-loader'] // 需要安裝 打包圖片/txt/等
+      test: /\.scss$/,
+      use:  [
+        'style-loader', 
+        {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 2, // 保證index.scss裏引入的其他scss文件也會執行postcss&sass兩個loader文件
+            modules: true // 開啓CSS MODULE
+          }
+        },
+        'sass-loader',
+        'postcss-loader'
+      ] // loader是從下到上, 從右到左的執行順序
     }]
   },
   output: { // 打包輸出的路徑
