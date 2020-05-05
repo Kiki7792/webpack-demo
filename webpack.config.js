@@ -3,6 +3,7 @@
  * 并把打包生成的js文件自動引入到這個html文件中
  */
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const path = require('path') // node核心模塊
 
 module.exports = {
@@ -51,8 +52,13 @@ module.exports = {
     path: path.resolve(__dirname, 'dist') // 打包的文件所在的文件夾名稱, __dirname指webpack.config.js所在的文件夾路徑
   },
   // plugin可以在webpack運行到某個時刻的時候, 幫你做一些事情, 類似hook生命周期函數
-  plugins: [new HtmlWebpackPlugin({
-    // template: `./src/index.html`
-    template: `src/index.html`
-  })]
+  plugins: [
+    // 打包之後運行HtmlWebpackPlugin
+    new HtmlWebpackPlugin({
+      // template: `./src/index.html`
+      template: `src/index.html`
+    }),
+    // 打包之前 會使用CleanWebpackPlugin插件清除 dist目錄
+    new CleanWebpackPlugin()
+  ]
 }
