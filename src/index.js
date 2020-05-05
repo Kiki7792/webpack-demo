@@ -1,4 +1,4 @@
-console.log('hello world')
+console.log('hello world! qiqi###')
 /**
  * sourceMap
  * sourceMap 是一個映射關係, 知道dist目錄下main.js文件line96報錯, 

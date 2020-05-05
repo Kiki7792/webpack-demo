@@ -24,6 +24,15 @@ module.exports = {
   entry: {
     main:  './src/index.js', // 打包index.js 默認生成的文件名是main.js
   },
+  // devServer--webpack-dev-server
+  devServer: {
+    // 告知webpack-dev-server，将dist目录下的资源作为server可访问文件
+    contentBase: './dist',
+    // 打包完成后自动帮我们打開並訪問浏览器
+    open: true,
+    // 服务器端口号，默认8080
+    port: 8000
+  },
   module: { // 模塊
     rules: [
       { // img 校驗規則

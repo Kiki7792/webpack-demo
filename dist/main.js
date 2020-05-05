@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("console.log('hello world')\r\n/**\r\n * sourceMap\r\n * sourceMap 是一個映射關係, 知道dist目錄下main.js文件line96報錯, \r\n * 通過映射就知道實際上是src下index.js line1報錯\r\n */\r\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvaW5kZXguanMuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvaW5kZXguanM/YjYzNSJdLCJzb3VyY2VzQ29udGVudCI6WyJjb25zb2xlLmxvZygnaGVsbG8gd29ybGQnKVxyXG4vKipcclxuICogc291cmNlTWFwXHJcbiAqIHNvdXJjZU1hcCDmmK/kuIDlgIvmmKDlsITpl5zkv4IsIOefpemBk2Rpc3Tnm67pjITkuIttYWluLmpz5paH5Lu2bGluZTk25aCx6YyvLCBcclxuICog6YCa6YGO5pig5bCE5bCx55+l6YGT5a+m6Zqb5LiK5pivc3Jj5LiLaW5kZXguanMgbGluZTHloLHpjK9cclxuICovXHJcbiJdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBOyIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/index.js\n");
+eval("console.log('hello world! qiqi###')\r\n/**\r\n * sourceMap\r\n * sourceMap 是一個映射關係, 知道dist目錄下main.js文件line96報錯, \r\n * 通過映射就知道實際上是src下index.js line1報錯\r\n */\r\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvaW5kZXguanMuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvaW5kZXguanM/YjYzNSJdLCJzb3VyY2VzQ29udGVudCI6WyJjb25zb2xlLmxvZygnaGVsbG8gd29ybGQhIHFpcWkjIyMnKVxyXG4vKipcclxuICogc291cmNlTWFwXHJcbiAqIHNvdXJjZU1hcCDmmK/kuIDlgIvmmKDlsITpl5zkv4IsIOefpemBk2Rpc3Tnm67pjITkuIttYWluLmpz5paH5Lu2bGluZTk25aCx6YyvLCBcclxuICog6YCa6YGO5pig5bCE5bCx55+l6YGT5a+m6Zqb5LiK5pivc3Jj5LiLaW5kZXguanMgbGluZTHloLHpjK9cclxuICovXHJcbiJdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBOyIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/index.js\n");
 
 /***/ })
 
