@@ -12,6 +12,12 @@ module.exports = {
    * https://webpack.docschina.org/configuration/devtool/
    * development建議: cheap-module-eval-source-map 錯誤提示比較全, 打包速度比較快
    * production建議: cheap-module-source-map
+   * 
+   * cheap: 1. 只告訴我們是 出錯的是哪一行, 2. 只負責業務代碼出錯行, 不負責loader裏的錯誤
+   * module: 除了業務代碼, 也要負責loader裏出的錯誤
+   * eval: 提高打包速度
+   * source-map: dist目錄下會生成.map文件
+   * inline: 會把.map文件 放到打包後的main.js文件裏去
    */
   devtool: 'cheap-module-eval-source-map',
   // entry:  './src/index.js', // entry可以只寫 Strig || Object
