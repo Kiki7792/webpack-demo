@@ -8,7 +8,11 @@ const path = require('path') // node核心模塊
 
 module.exports = {
   mode: 'development', // 默認是生產環境production, else 的development
-  entry: './src/index.js', // 打包的是那支文件velopment
+  // entry:  './src/index.js', // entry可以只寫 Strig || Object
+  entry: {
+    main:  './src/index.js', // 打包index.js 默認生成的文件名是main.js
+    sub:  './src/index.js', // 打包index.js 默認生成的文件名是main.js
+  },
   module: { // 模塊
     rules: [
       { // img 校驗規則
@@ -48,7 +52,9 @@ module.exports = {
     ]
   },
   output: { // 打包輸出的路徑
-    filename: 'bundle.js', // 打包後的文件名
+    publicPath: 'http://cdn.com.cn', // dist->index.html注入的js文件默認就會帶上publicPath
+    // filename: 'bundle.js', // 打包後的文件名
+    filename: '[name].js', // 打包後的文件名, [name]佔位符, 最終就是替代entry裏的main & sub
     path: path.resolve(__dirname, 'dist') // 打包的文件所在的文件夾名稱, __dirname指webpack.config.js所在的文件夾路徑
   },
   // plugin可以在webpack運行到某個時刻的時候, 幫你做一些事情, 類似hook生命周期函數
