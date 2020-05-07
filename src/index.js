@@ -1,12 +1,7 @@
-import "@babel/polyfill"
+/**
+ * Tree Shaking 只支持ES Module 即import靜態引入
+ */
+import { add } from './math'
 
-import React, { Component } from 'react'
-import ReactDom from 'react-dom'
+add(1, 2)
 
-class App extends Component {
-  render() {
-    return <div>Hello World</div>
-  }
-}
-
-ReactDom.render(<App />, document.getElementById('root'))

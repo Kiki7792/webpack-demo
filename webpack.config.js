@@ -8,7 +8,8 @@ const path = require('path') // node核心模塊
 const Webpack = require('webpack')
 
 module.exports = {
-  mode: 'development', // 默認是生產環境production, else 的development, 打包的文件不會被壓縮
+  // mode: 'development', // 默認是生產環境production, else 的development, 打包的文件不會被壓縮, dev默認沒有treeShaking功能
+  mode: 'production',
   /**
    * https://webpack.docschina.org/configuration/devtool/
    * development建議: cheap-module-eval-source-map 錯誤提示比較全, 打包速度比較快
@@ -20,7 +21,8 @@ module.exports = {
    * source-map: dist目錄下會生成.map文件
    * inline: 會把.map文件 放到打包後的main.js文件裏去
    */
-  devtool: 'cheap-module-eval-source-map',
+  // devtool: 'cheap-module-eval-source-map',
+  devtool: 'cheap-module-ource-map',
   // entry:  './src/index.js', // entry可以只寫 Strig || Object
   entry: {
     main:  './src/index.js', // 打包index.js 默認生成的文件名是main.js
@@ -113,5 +115,8 @@ module.exports = {
     new CleanWebpackPlugin(),
     // webpack自帶的熱更新插件
     new Webpack.HotModuleReplacementPlugin()
-  ]
+  ],
+  // optimization: {
+  //   usedExports: true // tree-shaking在dev mode下使用只打包引用的function
+  // }
 }
