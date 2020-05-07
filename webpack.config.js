@@ -5,6 +5,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const path = require('path') // node核心模塊
+const Webpack = require('webpack')
 
 module.exports = {
   mode: 'development', // 默認是生產環境production, else 的development
@@ -31,7 +32,10 @@ module.exports = {
     // 打包完成后自动帮我们打開並訪問浏览器
     open: true,
     // 服务器端口号，默认8080
-    port: 8000
+    port: 8000,
+    hot: true,
+    // 即使修改不成功, 也不自動刷新瀏覽器
+    hotOnly: true
   },
   module: { // 模塊
     rules: [
@@ -48,7 +52,7 @@ module.exports = {
           }
         }
       } ,
-      { // 校驗css規則
+      { // 校驗scss規則
         test: /\.scss$/,
         use:  [
           'style-loader', 
@@ -60,6 +64,20 @@ module.exports = {
             }
           },
           'sass-loader',
+          'postcss-loader'
+        ] // loader是從下到上, 從右到左的執行順序
+      },
+      { // 校驗css規則
+        test: /\.css$/,
+        use:  [
+          'style-loader', 
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1, // 保證index.scss裏引入的其他scss文件也會執行postcss&sass兩個loader文件
+              // modules: true // 開啓CSS MODULE
+            }
+          },
           'postcss-loader'
         ] // loader是從下到上, 從右到左的執行順序
       },
@@ -85,6 +103,8 @@ module.exports = {
       template: `src/index.html`
     }),
     // 打包之前 會使用CleanWebpackPlugin插件清除 dist目錄
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    // webpack自帶的熱更新插件
+    new Webpack.HotModuleReplacementPlugin()
   ]
 }
