@@ -86,6 +86,16 @@ module.exports = {
         use: {
           loader: 'file-loader'
         }
+      },
+      { // babel-loader轉換ES6變成瀏覽器可識別的ES5語法
+        test: /\.js$/,
+        exclude: /node_modules/, // 排除node_modules 不使用babel
+        loader: 'babel-loader',
+        options: {
+          presets: [['@babel/preset-env', {
+            useBuiltIns: 'usage' // babel-polyfill只填充頁面用到的語法Promise/map, 而不是填充全部
+          }]]
+        }
       }
     ]
   },
