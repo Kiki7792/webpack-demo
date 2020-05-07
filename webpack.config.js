@@ -8,13 +8,13 @@ const path = require('path') // node核心模塊
 const Webpack = require('webpack')
 
 module.exports = {
-  mode: 'development', // 默認是生產環境production, else 的development
+  mode: 'development', // 默認是生產環境production, else 的development, 打包的文件不會被壓縮
   /**
    * https://webpack.docschina.org/configuration/devtool/
    * development建議: cheap-module-eval-source-map 錯誤提示比較全, 打包速度比較快
    * production建議: cheap-module-source-map
    * 
-   * cheap: 1. 只告訴我們是 出錯的是哪一行, 2. 只負責業務代碼出錯行, 不負責loader裏的錯誤
+   * cheap: 1. 只告訴我們是 出錯的是哪一行, 不携帶列信息 2. 只負責業務代碼出錯行, 不負責loader裏的錯誤
    * module: 除了業務代碼, 也要負責loader裏出的錯誤
    * eval: 提高打包速度
    * source-map: dist目錄下會生成.map文件
@@ -33,6 +33,7 @@ module.exports = {
     open: true,
     // 服务器端口号，默认8080
     port: 8000,
+    // true支持熱更新
     hot: true,
     // 即使修改不成功, 也不自動刷新瀏覽器
     hotOnly: true
