@@ -1,19 +1,24 @@
+// import test from './test.js'
+// console.log(test.name)
+
 // 同步加载
 // import _ from 'lodash'
+// import $ from 'jquery'
 // console.log(_.join(['a', 'b', 'cd'], '***')) // a***b***c
 
 // 异步加载
-function getComponent() {
-  return import('lodash').then(({ default: _ }) => {
-    let elem = document.createElement('div')
-    elem.innerHTML = _.join(['a', 'b', 'cd'], '+')
-    return elem
-  })
-}
+// function getComponent() {
+//   // 异步代码 使用 magicChunkName 给分割的文件命名
+//   return import(/* webpackChunkName:"lodash" */'lodash').then(({ default: _ }) => {
+//     let elem = document.createElement('div')
+//     elem.innerHTML = _.join(['a', 'b', 'cd'], '+')
+//     return elem
+//   })
+// }
 
-getComponent().then(elem => {
-  document.body.appendChild(elem)
-})
+// getComponent().then(elem => {
+//   document.body.appendChild(elem)
+// })
 
 /**
  * 代码分割与webpack无关
