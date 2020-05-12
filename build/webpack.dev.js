@@ -49,6 +49,11 @@ const devConfig = {
       }
     ]
   },
+  output: { // 打包輸出的路徑
+    // publicPath: 'http://cdn.com.cn', // dist->index.html注入的js文件默認就會帶上publicPath
+    filename: '[name].js', // index.js走filename
+    chunkFilename: '[name].chunk.js', // 间接引入的库lodash就走chunkFilename
+  },
   // plugin可以在webpack運行到某個時刻的時候, 幫你做一些事情, 類似hook生命周期函數
   plugins: [
     // webpack自帶的熱更新插件

@@ -45,6 +45,11 @@ const devConfig = {
       }
     ]
   },
+  output: { // 打包輸出的路徑
+    // publicPath: 'http://cdn.com.cn', // dist->index.html注入的js文件默認就會帶上publicPath
+    filename: '[name].[contenthash].js', // index.js走filename
+    chunkFilename: '[name].[contenthash].chunk.js', // 间接引入的库lodash就走chunkFilename
+  },
   optimization: {
     minimizer: [
       new OptimizeCSSAssetsPlugin({})

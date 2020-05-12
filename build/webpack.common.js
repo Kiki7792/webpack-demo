@@ -41,9 +41,6 @@ module.exports = {
   },
   output: { // 打包輸出的路徑
     // publicPath: 'http://cdn.com.cn', // dist->index.html注入的js文件默認就會帶上publicPath
-    // filename: 'bundle.js', // 打包後的文件名
-    filename: '[name].js', // index.js走filename
-    chunkFilename: '[name].chunk.js', // 间接引入的库lodash就走chunkFilename
     // path: path.resolve(__dirname, 'dist') // 打包的文件所在的文件夾名稱, __dirname指webpack.config.js所在的文件夾路徑
     path: path.resolve(__dirname, '../dist') // 打包的文件所在的文件夾名稱, __dirname指webpack.config.js所在的文件夾路徑
   },
@@ -57,10 +54,21 @@ module.exports = {
     // 打包之前 會使用CleanWebpackPlugin插件清除 dist目錄
     new CleanWebpackPlugin()
   ],
+  performance: false, // 解決打包文件大於244kb false: 即不需要檢測性能問題
   optimization: {
+    runtimeChunk: { // 配置瀏覽器緩存 manifest 溝通js與js之間的關係 都放在runtime裏
+      name: 'runtime'
+    },
     usedExports: true, // tree-shaking
     splitChunks: {
-      chunks: 'all' // async只对异步代码有效, all对同步异步都有效, initial只对同步代码有效
+      chunks: 'all', // async只对异步代码有效, all对同步异步都有效, initial只对同步代码有效
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          name: 'vendors' // chunk的name
+        }
+      }
     }
   }
 }
