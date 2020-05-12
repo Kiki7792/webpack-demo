@@ -8,7 +8,6 @@ const path = require('path') // node核心模塊
 
 module.exports = {
   entry: {
-    lodash: './src/lodash.js',
     main:  './src/index.js' // 打包index.js 默認生成的文件名是main.js
   },
   module: { // 模塊
@@ -85,5 +84,10 @@ module.exports = {
     }),
     // 打包之前 會使用CleanWebpackPlugin插件清除 dist目錄
     new CleanWebpackPlugin()
-  ]
+  ],
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
+  }
 }
