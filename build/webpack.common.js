@@ -24,35 +24,6 @@ module.exports = {
             limit: 2048 // 小於2Kb 打包在bundle.js中以base64展示, 大於2kb就打包在dist/images文件夾下
           }
         }
-      } ,
-      { // 校驗scss規則
-        test: /\.scss$/,
-        use:  [
-          'style-loader', 
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 2, // 保證index.scss裏引入的其他scss文件也會執行postcss&sass兩個loader文件
-              // modules: true // 開啓CSS MODULE
-            }
-          },
-          'sass-loader',
-          'postcss-loader'
-        ] // loader是從下到上, 從右到左的執行順序
-      },
-      { // 校驗css規則
-        test: /\.css$/,
-        use:  [
-          'style-loader', 
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1, // 保證index.scss裏引入的其他scss文件也會執行postcss&sass兩個loader文件
-              // modules: true // 開啓CSS MODULE
-            }
-          },
-          'postcss-loader'
-        ] // loader是從下到上, 從右到左的執行順序
       },
       { // 打包字體文件
         test: /\.(eot|ttf|svg|woff)$/,
@@ -71,7 +42,8 @@ module.exports = {
   output: { // 打包輸出的路徑
     // publicPath: 'http://cdn.com.cn', // dist->index.html注入的js文件默認就會帶上publicPath
     // filename: 'bundle.js', // 打包後的文件名
-    filename: '[name].js', // 打包後的文件名, [name]佔位符, 最終就是替代entry裏的main & sub
+    filename: '[name].js', // index.js走filename
+    chunkFilename: '[name].chunk.js', // 间接引入的库lodash就走chunkFilename
     // path: path.resolve(__dirname, 'dist') // 打包的文件所在的文件夾名稱, __dirname指webpack.config.js所在的文件夾路徑
     path: path.resolve(__dirname, '../dist') // 打包的文件所在的文件夾名稱, __dirname指webpack.config.js所在的文件夾路徑
   },
@@ -86,6 +58,7 @@ module.exports = {
     new CleanWebpackPlugin()
   ],
   optimization: {
+    usedExports: true, // tree-shaking
     splitChunks: {
       chunks: 'all' // async只对异步代码有效, all对同步异步都有效, initial只对同步代码有效
     }

@@ -16,13 +16,43 @@ const devConfig = {
     // true支持熱更新
     hot: true
   },
+  module: {
+    rules: [
+      { // 校驗scss規則
+        test: /\.scss$/,
+        use:  [
+          'style-loader', 
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2, // 保證index.scss裏引入的其他scss文件也會執行postcss&sass兩個loader文件
+              // modules: true // 開啓CSS MODULE
+            }
+          },
+          'sass-loader',
+          'postcss-loader'
+        ] // loader是從下到上, 從右到左的執行順序
+      },
+      { // 校驗css規則
+        test: /\.css$/,
+        use:  [
+          'style-loader', 
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1, // 保證index.scss裏引入的其他scss文件也會執行postcss&sass兩個loader文件
+              // modules: true // 開啓CSS MODULE
+            }
+          },
+          'postcss-loader'
+        ] // loader是從下到上, 從右到左的執行順序
+      }
+    ]
+  },
   // plugin可以在webpack運行到某個時刻的時候, 幫你做一些事情, 類似hook生命周期函數
   plugins: [
     // webpack自帶的熱更新插件
     new Webpack.HotModuleReplacementPlugin()
-  ],
-  optimization: {
-    usedExports: true // tree-shaking在dev mode下使用只打包引用的function
-  }
+  ]
 }
 module.exports = merge(commonConfig, devConfig)

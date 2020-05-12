@@ -1,3 +1,9 @@
+/**
+ * CSS分割
+ */
+import './style.css'
+import './style1.css'
+
 // 同步加载
 // import _ from 'lodash'
 // console.log(_.join(['a', 'b', 'cd'], '***')) // a***b***c
@@ -5,23 +11,31 @@
 // 异步加载async await
 // async function getComponent() {
 //   const { default: _ } = await import(/* webpackChunkName:"lodash" */'lodash')
-  
+//   let elem = document.createElement('div')
+//   elem.innerHTML = _.join(['qiqi', 'zhang'], '+')
 //   return elem
 // }
 
-document.addEventListener('click', () => {
-  // import('./click').then(({ default: func }) => {
-  /**
-   * Prefetch会等待核心code加载完成, 网络空闲再加载Prefetch的code 有兼容性问题
-   */
-  // import(/* webpackPrefetch: true */ './click').then(({ default: func }) => {
-    /**
-     * Preload: 和核心code一起加载
-     */
-  import(/* webpackPreload: true */ './click').then(({ default: func }) => {
-    func()
-  })
-})
+// document.addEventListener('click', () => {
+//   getComponent().then(elem => {
+//     document.body.appendChild(elem)
+//   })
+// })
+
+
+// document.addEventListener('click', () => {
+//   // import('./click').then(({ default: func }) => {
+//   /**
+//    * Prefetch会等待核心code加载完成, 网络空闲再加载Prefetch的code 有兼容性问题
+//    */
+//   // import(/* webpackPrefetch: true */ './click').then(({ default: func }) => {
+//     /**
+//      * Preload: 和核心code一起加载
+//      */
+//   import(/* webpackPreload: true */ './click').then(({ default: func }) => {
+//     func()
+//   })
+// })
 
 // // 异步加载
 // function getComponent() {
