@@ -35,8 +35,14 @@ module.exports = {
       { // babel-loader轉換ES6變成瀏覽器可識別的ES5語法
         test: /\.js$/,
         exclude: /node_modules/, // 排除node_modules 不使用babel
-        loader: 'babel-loader',
-        // options: 
+        use: [
+          {
+            loader: 'babel-loader'
+          },
+          {
+            loader: 'imports-loader?this=>window' // 如果使用imports-loader this指向window, 不指向当前模块的对象
+          }
+        ]
       }
     ]
   },
