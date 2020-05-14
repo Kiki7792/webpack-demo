@@ -1,6 +1,4 @@
 const Webpack = require('webpack')
-const merge = require('webpack-merge')
-const commonConfig = require('./webpack.common.js')
 
 const devConfig = {
   mode: 'development', // 默認是生產環境production, else 的development, 打包的文件不會被壓縮, dev默認沒有treeShaking功能
@@ -60,4 +58,4 @@ const devConfig = {
     new Webpack.HotModuleReplacementPlugin()
   ]
 }
-module.exports = merge(commonConfig, devConfig)
+module.exports = devConfig

@@ -1,9 +1,7 @@
-const merge = require('webpack-merge')
-const commonConfig = require('./webpack.common.js')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin") // css分割
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin") // 压缩css
 
-const devConfig = {
+const prodConfig = {
   mode: 'production',
   devtool: 'cheap-module-ource-map',
   plugins: [
@@ -57,4 +55,4 @@ const devConfig = {
   }
 }
 
-module.exports = merge(commonConfig, devConfig)
+module.exports = prodConfig

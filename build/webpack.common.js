@@ -6,8 +6,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const path = require('path') // node核心模塊
 const webpack = require('webpack')
+const merge = require('webpack-merge')
+const devConfig = require('./webpack.dev')
+const prodConfig = require('./webpack.prod')
 
-module.exports = {
+const commonConfig = {
   entry: {
     main:  './src/index.js' // 打包index.js 默認生成的文件名是main.js
   },
@@ -82,5 +85,15 @@ module.exports = {
         }
       }
     }
+  }
+}
+
+module.exports = (env) => {
+  if (env && env.production) {
+    // 生产环境
+    return merge(commonConfig, prodConfig)
+  } else {
+    // 开发环境
+    return merge(commonConfig, devConfig)
   }
 }
