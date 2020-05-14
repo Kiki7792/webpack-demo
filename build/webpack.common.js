@@ -5,6 +5,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const path = require('path') // node核心模塊
+const webpack = require('webpack')
 
 module.exports = {
   entry: {
@@ -52,7 +53,12 @@ module.exports = {
       template: `src/index.html`
     }),
     // 打包之前 會使用CleanWebpackPlugin插件清除 dist目錄
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new webpack.ProvidePlugin({
+      $: 'jquery', // 发现模块中有$字符串, 就自动引入jquery
+      // _: 'lodash'
+      _join: ['lodash', 'join'] // 使用lodash里的join
+    })
   ],
   performance: false, // 解決打包文件大於244kb false: 即不需要檢測性能問題
   optimization: {
