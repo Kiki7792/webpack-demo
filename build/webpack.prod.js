@@ -2,6 +2,7 @@ const merge = require('webpack-merge')
 const commonConfig = require('./webpack.common.js')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin") // css分割
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin") // 压缩css
+const WorkboxPlugin = require('workbox-webpack-plugin') // 处理PWA
 
 const devConfig = {
   mode: 'production',
@@ -10,7 +11,11 @@ const devConfig = {
     new MiniCssExtractPlugin({
       filename: "[name].css", // 直接被index.html link引用 使用filename
       chunkFilename: "[name].chunk.css" /// else 间接引用的file
-    })
+    }),
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true
+    }) // SW: service worker
   ],
   module: {
     rules: [
