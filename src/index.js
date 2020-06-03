@@ -1,7 +1,20 @@
-/**
- * Tree Shaking 只支持ES Module 即import靜態引入
- */
-import { add } from './math'
+import React, { Component } from 'react'
+import { BrowserRouter, Route } from 'react-router-dom'
+import ReactDom from 'react-dom'
 
-add(1, 7)
+import Home from './home'
+import List from './list'
+
+class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <Route path="/" exact component={Home}></Route>
+        <Route path="/list" component={List}></Route>
+      </BrowserRouter>
+    )
+  }
+}
+
+ReactDom.render(<App />, document.getElementById('root'))
 

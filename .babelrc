@@ -9,13 +9,4 @@
     }],
     "@babel/preset-react"
   ]
-  // 開發庫使用plugins-transform-runtime 以閉包形式注入引用的内容, 不會污染全局環境
-  // "plugins": [
-  //   ["@babel/plugin-transform-runtime", {
-  //     "corejs": 2,
-  //     "helpers": true,
-  //     "regenerator": true,
-  //     "useESModules": false
-  //   }]
-  // ]
 }

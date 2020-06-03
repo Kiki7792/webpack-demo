@@ -8,8 +8,8 @@ const path = require('path') // node核心模塊
 const Webpack = require('webpack')
 
 module.exports = {
-  // mode: 'development', // 默認是生產環境production, else 的development, 打包的文件不會被壓縮, dev默認沒有treeShaking功能
-  mode: 'production',
+  mode: 'development', // 默認是生產環境production, else 的development, 打包的文件不會被壓縮, dev默認沒有treeShaking功能
+  // mode: 'production',
   /**
    * https://webpack.docschina.org/configuration/devtool/
    * development建議: cheap-module-eval-source-map 錯誤提示比較全, 打包速度比較快
@@ -21,14 +21,15 @@ module.exports = {
    * source-map: dist目錄下會生成.map文件
    * inline: 會把.map文件 放到打包後的main.js文件裏去
    */
-  // devtool: 'cheap-module-eval-source-map',
-  devtool: 'cheap-module-ource-map',
+  devtool: 'cheap-module-eval-source-map',
+  // devtool: 'cheap-module-ource-map',
   // entry:  './src/index.js', // entry可以只寫 Strig || Object
   entry: {
     main:  './src/index.js', // 打包index.js 默認生成的文件名是main.js
   },
   // devServer--webpack-dev-server
   devServer: {
+    publicPath: '/',
     // 告知webpack-dev-server，将dist目录下的资源作为server可访问文件
     contentBase: './dist',
     // 打包完成后自动帮我们打開並訪問浏览器
@@ -38,7 +39,26 @@ module.exports = {
     // true支持熱更新
     hot: true,
     // 即使修改不成功, 也不自動刷新瀏覽器
-    hotOnly: true
+    hotOnly: true,
+    // 解决单页面路由的问题
+    historyApiFallback: true,
+    proxy: { // 开发环境 development 下才会生效, production使用ngix
+      '/react/api': {
+        target: 'http://www.dell-lee.com',
+        // secure: false, // 针对target是 https 的转发
+        pathRewrite: {
+          'header.json': 'demo.json'
+        },
+        changeOrigin: true, // 解决跨域
+        bypass: function(req, res, proxyOptions) { // bypass 拦截
+          if (req.headers.accept.indexOf('html') !== -1) {
+            console.log('Skipping proxy for Browser request')
+            // return '/index.html'
+            return false
+          }
+        }
+      }
+    }
   },
   module: { // 模塊
     rules: [
@@ -99,7 +119,7 @@ module.exports = {
     ]
   },
   output: { // 打包輸出的路徑
-    // publicPath: 'http://cdn.com.cn', // dist->index.html注入的js文件默認就會帶上publicPath
+    publicPath: '/',
     // filename: 'bundle.js', // 打包後的文件名
     filename: '[name].js', // 打包後的文件名, [name]佔位符, 最終就是替代entry裏的main & sub
     path: path.resolve(__dirname, 'dist') // 打包的文件所在的文件夾名稱, __dirname指webpack.config.js所在的文件夾路徑
