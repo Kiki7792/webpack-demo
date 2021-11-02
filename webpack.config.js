@@ -7,7 +7,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.scss/,
+        test: /\.(scss|css)$/,
         use: [
           'style-loader',
           {
@@ -20,8 +20,15 @@ module.exports = {
         ]
       },
       {
-        test: /\.(jpe?g|png|giff|svg)/,
+        test: /\.(jpe?g|png|giff|svg)$/,
         use: ['file-loader']
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'font/[name].[hash:6][ext]'
+        }
       }
     ]
   }
